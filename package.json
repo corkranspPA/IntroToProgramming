@@ -1,0 +1,81 @@
+{
+  "scripts": {
+    "build": "standard",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "eslint": "^8.47.0",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.1",
+    "jest": "^29.6.3",
+    "prettier": "^3.0.1"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "standard-with-typescript",
+      "plugin:react/recommended"
+    ],
+    "ignorePatterns": [
+      "*.ipynb",
+      ""
+    ],
+    "overrides": [
+      {
+        "env": {
+          "node": true
+        },
+        "files": [
+          ".eslintrc.{js,cjs}",
+          "*.ts",
+          "*.tsx",
+          "*.js",
+          "*.cjs"
+        ],
+        "parserOptions": {
+          "sourceType": "script"
+        },
+        "ignorePatterns": [
+          "*.ipynb",
+          ""
+        ]
+      }
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "@typescript-eslint/restrict-template-expressions": "off",
+      "@typescript-eslint/quotes": "off",
+      "@typescript-eslint/no-console": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/restrict-plus-operands": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/semi": "off",
+      "yoda": "off",
+      "no-empty": "off",
+      "keyword-spacing": "off",
+      "no-var": "off",
+      "prefer-const": "off",
+      "eol-last": "off"
+    }
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
