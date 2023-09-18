@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 const convert = require('./tempConvert')
 
 test('correctly converts from F to C - fixed value 32', () => {
