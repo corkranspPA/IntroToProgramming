@@ -1,4 +1,3 @@
-import {describe, expect, test} from '@jest/globals';
 const geo = require('./geometryHelper.js');
 
 describe('Rectangle area module', () => {
