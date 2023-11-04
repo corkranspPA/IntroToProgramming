@@ -71,20 +71,6 @@ describe('endUp', () => {
     expect(str.endUp('Proctor')).toBe('ProcTOR');
   });
 });
-describe('endUp', () => {
-  test('Hello -> HeLLO', () => {
-    expect(str.endUp('Hello')).toBe('HeLLO');
-  });
-  test('hi there -> hi thERE', () => {
-    expect(str.endUp('hi there')).toBe('hi thERE');
-  });
-  test('hi! -> HI!', () => {
-    expect(str.endUp('hi!')).toBe('HI!');
-  });
-  test('Proctor -> ProcTOR', () => {
-    expect(str.endUp('Proctor')).toBe('ProcTOR');
-  });
-});
 describe('middleThree', () => {
   test('Candy -> and', () => {
     expect(str.middleThree('Candy')).toBe('and');
