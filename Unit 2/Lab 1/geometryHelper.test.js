@@ -131,7 +131,7 @@ describe('Triangle area module', () => {
     expect(geo.areaOfTriangle(5,6,7)).toBe(14.696938456699069);
   });
   test('Triangle /w side lengths 6, 14, 9 has area equal to ~18.41', () => {
-    expect(geo.areaOfTriangle(5,6,7)).toBe(18.410255294264662);
+    expect(geo.areaOfTriangle(6,14,9)).toBe(18.410255294264662);
   });
   test('Triangle /w side lengths 5.25, 8.75, 6.4 has area equal to ~16.679', () => {
     expect(geo.areaOfTriangle(5.25,8.75,6.4)).toBe(16.679325525931787);
