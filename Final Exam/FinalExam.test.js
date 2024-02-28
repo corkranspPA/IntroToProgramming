@@ -1,14 +1,14 @@
 const fe = require('./FinalExam.js');
 
-describe('max', () => {
-  test('1, 5 -> 5', () => {
-    expect(fe.max(1,5)).toBe(5);
+describe('divisibleBy', () => {
+  test('4, 2 -> true', () => {
+    expect(fe.divisibleBy(4,2)).toBe(true);
   });
-  test('5, 1 -> 5', () => {
-    expect(fe.max(5,1)).toBe(5);
+  test('5, 2 -> false', () => {
+    expect(fe.divisibleBy(5,2)).toBe(false);
   });
-  test('3, 3 -> 3', () => {
-    expect(fe.max(3,3)).toBe(3);
+  test('25, 5 -> true', () => {
+    expect(fe.divisibleBy(25,5)).toBe(true);
   });
 });
 describe('diff21', () => {
@@ -38,7 +38,7 @@ describe('positiveNegative', () => {
 });
 describe('copyEnd', () => {
   test('Hello -> lololo', () => {
-    expect(fe.copyEnd('Hello')).toBe('lololo');
+    expect(fe.copyEnd('Proctor')).toBe('ororor');
   });
   test('ab -> ababab', () => {
     expect(fe.copyEnd('ab')).toBe('ababab');
@@ -58,14 +58,14 @@ describe('abcOrder', () => {
     expect(fe.abcOrder(1, 1, 2, true)).toBe(true);
   });
 });
-describe('copyStart', () => {
-  test('Hello -> lololo', () => {
-    expect(fe.copyStart('Hello')).toBe('HeHeHe');
+describe('dupliCat', () => {
+  test('good, dog -> goodog', () => {
+    expect(fe.dupliCat('good', 'dog')).toBe('goodog');
   });
-  test('ab -> ababab', () => {
-    expect(fe.copyStart('ab')).toBe('ababab');
+  test('hello, kitty -> hellokitty', () => {
+    expect(fe.dupliCat('hello', 'kitty')).toBe('hellokitty');
   });
-  test('Hi -> HiHiHi', () => {
-    expect(fe.copyStart('H')).toBe('HHH');
+  test('cat, *empty string* -> cat', () => {
+    expect(fe.dupliCat('cat', '')).toBe('cat');
   });
 });
