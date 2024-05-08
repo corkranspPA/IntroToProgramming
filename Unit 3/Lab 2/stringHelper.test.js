@@ -57,18 +57,32 @@ describe('frontBack', () => {
     expect(str.frontBack('Proctor')).toBe('rroctoP');
   });
 });
-describe('endUp', () => {
-  test('Hello -> HeLLO', () => {
-    expect(str.endUp('Hello')).toBe('HeLLO');
+describe('doubleUp', () => {
+  test('The -> TThhee', () => {
+    expect(str.doubleUp('The')).toBe('TThhee');
   });
-  test('hi there -> hi thERE', () => {
-    expect(str.endUp('hi there')).toBe('hi thERE');
+  test('AAbb -> AAAAbbbb', () => {
+    expect(str.doubleUp('Hi-There')).toBe('HHii-TThheerree');
   });
-  test('hi! -> HI!', () => {
-    expect(str.endUp('hi!')).toBe('HI!');
+  test('ItP -> IIttPP', () => {
+    expect(str.doubleUp('ItP!')).toBe('IIttPP');
   });
-  test('Proctor -> ProcTOR', () => {
-    expect(str.endUp('Proctor')).toBe('ProcTOR');
+  test('Proctor -> PPrrooccttoorr', () => {
+    expect(str.doubleUp('Proctor')).toBe('PPrrooccttoorr');
+  });
+});
+describe('countHi', () => {
+  test('abc hi ho -> 1', () => {
+    expect(str.countHi('abc hi ho')).toBe(1);
+  });
+  test('ABChi hi -> 2', () => {
+    expect(str.countHi('ABChi hi')).toBe(2);
+  });
+  test('hihi -> 2', () => {
+    expect(str.countHi('hihi')).toBe(2);
+  });
+  test('Proctor! -> 0', () => {
+    expect(str.countHi('Proctor!')).toBe(0);
   });
 });
 describe('middleThree', () => {
