@@ -61,11 +61,11 @@ describe('doubleUp', () => {
   test('The -> TThhee', () => {
     expect(str.doubleUp('The')).toBe('TThhee');
   });
-  test('AAbb -> AAAAbbbb', () => {
-    expect(str.doubleUp('Hi-There')).toBe('HHii-TThheerree');
+  test('Hi-There -> HHii--TThheerree', () => {
+    expect(str.doubleUp('Hi-There')).toBe('HHii--TThheerree');
   });
-  test('ItP -> IIttPP', () => {
-    expect(str.doubleUp('ItP!')).toBe('IIttPP');
+  test('ItP! -> IIttPP!!', () => {
+    expect(str.doubleUp('ItP!')).toBe('IIttPP!!');
   });
   test('Proctor -> PPrrooccttoorr', () => {
     expect(str.doubleUp('Proctor')).toBe('PPrrooccttoorr');
