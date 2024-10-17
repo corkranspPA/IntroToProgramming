@@ -1,34 +1,38 @@
 const str = require('./stringHelper.js');
 
-describe('notString', () => {
-  test('candy -> not candy', () => {
-    expect(str.notString('candy')).toBe('not candy');
+describe('endLy', () => {
+  test('oddly -> true', () => {
+    expect(str.endLy('oddly')).toBe(true);
   });
-  test('x -> not x', () => {
-    expect(str.notString('x')).toBe('not x');
+  test('odd -> false', () => {
+    expect(str.endLy('odd')).toBe(false);
   });
-  test('bad -> not bad', () => {
-    expect(str.notString('bad')).toBe('not bad');
+  test('oddli -> false', () => {
+    expect(str.endLy('oddli')).toBe(false);
   });
-  test('-> not ', () => {
-    expect(str.notString('')).toBe('not ');
+  test('ly -> true', () => {
+    expect(str.endLy('ly')).toBe(true);
+  });
+  test('-> false', () => {
+    expect(str.endLy('')).toBe(false);
   });
 });
 
-describe('makeAbba', () => {
-  test('Hi, Bye -> HiByeByeHi', () => {
-    expect(str.makeAbba('Hi', 'Bye')).toBe('HiByeByeHi');
+describe('proctorColor', () => {
+  test('greenxx -> green', () => {
+    expect(str.proctorColor('greenxx')).toBe('green');
   });
-  test('Yo, Alice -> YoAliceAliceYo', () => {
-    expect(str.makeAbba('Yo', 'Alice')).toBe('YoAliceAliceYo');
+  test('xxwhite ->', () => {
+    expect(str.proctorColor('xxwhite')).toBe('');
   });
-  test('What, Up -> WhatUpUpWhat', () => {
-    expect(str.makeAbba('What','Up')).toBe('WhatUpUpWhat');
+  test('whiteTimes -> white', () => {
+    expect(str.proctorColor('whiteTimes')).toBe('white');
   });
-  test(',->', () => {
-    expect(str.makeAbba('','')).toBe('');
+  test('blue ->', () => {
+    expect(str.proctorColor('blue')).toBe('');
   });
 });
+
 describe('missingChar', () => {
   test('kitten, 1 -> ktten', () => {
     expect(str.missingChar('kitten', 1)).toBe('ktten');
@@ -43,20 +47,37 @@ describe('missingChar', () => {
     expect(str.missingChar('x', 0)).toBe('');
   });
 });
-describe('frontBack', () => {
+
+describe('lastFirst', () => {
   test('code -> eodc', () => {
-    expect(str.frontBack('code')).toBe('eodc');
+    expect(str.lastFirst('code')).toBe('eodc');
   });
   test('abc -> cba', () => {
-    expect(str.frontBack('abc')).toBe('cba');
+    expect(str.lastFirst('abc')).toBe('cba');
   });
   test('a -> a', () => {
-    expect(str.frontBack('ab')).toBe('ba');
+    expect(str.lastFirst('ab')).toBe('ba');
   });
   test('Proctor -> rroctoP', () => {
-    expect(str.frontBack('Proctor')).toBe('rroctoP');
+    expect(str.lastFirst('Proctor')).toBe('rroctoP');
   });
 });
+
+describe('fizzString', () => {
+  test('fig -> Fizz', () => {
+    expect(str.fizzString('fig')).toBe('Fizz');
+  });
+  test('dib -> Buzz', () => {
+    expect(str.fizzString('dib', 'Alice')).toBe('Buzz');
+  });
+  test('fib -> FizzBuzz', () => {
+    expect(str.fizzString('fib')).toBe('FizzBuzz');
+  });
+  test('Proctor -> Proctor', () => {
+    expect(str.fizzString('Proctor')).toBe('Proctor');
+  });
+});
+
 describe('doubleUp', () => {
   test('The -> TThhee', () => {
     expect(str.doubleUp('The')).toBe('TThhee');
@@ -71,20 +92,7 @@ describe('doubleUp', () => {
     expect(str.doubleUp('Proctor')).toBe('PPrrooccttoorr');
   });
 });
-describe('countHi', () => {
-  test('abc hi ho -> 1', () => {
-    expect(str.countHi('abc hi ho')).toBe(1);
-  });
-  test('ABChi hi -> 2', () => {
-    expect(str.countHi('ABChi hi')).toBe(2);
-  });
-  test('hihi -> 2', () => {
-    expect(str.countHi('hihi')).toBe(2);
-  });
-  test('Proctor! -> 0', () => {
-    expect(str.countHi('Proctor!')).toBe(0);
-  });
-});
+
 describe('middleThree', () => {
   test('Candy -> and', () => {
     expect(str.middleThree('Candy')).toBe('and');
