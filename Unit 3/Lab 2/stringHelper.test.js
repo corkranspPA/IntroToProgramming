@@ -68,7 +68,7 @@ describe('fizzString', () => {
     expect(str.fizzString('fig')).toBe('Fizz');
   });
   test('dib -> Buzz', () => {
-    expect(str.fizzString('dib', 'Alice')).toBe('Buzz');
+    expect(str.fizzString('dib')).toBe('Buzz');
   });
   test('fib -> FizzBuzz', () => {
     expect(str.fizzString('fib')).toBe('FizzBuzz');
@@ -78,18 +78,18 @@ describe('fizzString', () => {
   });
 });
 
-describe('doubleUp', () => {
-  test('The -> TThhee', () => {
-    expect(str.doubleUp('The')).toBe('TThhee');
+describe('isDoubled', () => {
+  test('BooBoo -> True', () => {
+    expect(str.doubleUp('BooBoo')).toBe(true);
   });
-  test('Hi-There -> HHii--TThheerree', () => {
-    expect(str.doubleUp('Hi-There')).toBe('HHii--TThheerree');
+  test('HelloThere -> false', () => {
+    expect(str.doubleUp('HelloThere')).toBe(false);
   });
-  test('ItP! -> IIttPP!!', () => {
-    expect(str.doubleUp('ItP!')).toBe('IIttPP!!');
+  test('aa -> true', () => {
+    expect(str.doubleUp('aa!')).toBe(true);
   });
-  test('Proctor -> PPrrooccttoorr', () => {
-    expect(str.doubleUp('Proctor')).toBe('PPrrooccttoorr');
+  test('Proctor -> false', () => {
+    expect(str.doubleUp('Proctor')).toBe(false);
   });
 });
 
