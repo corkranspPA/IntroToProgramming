@@ -80,16 +80,16 @@ describe('fizzString', () => {
 
 describe('isDoubled', () => {
   test('BooBoo -> True', () => {
-    expect(str.doubleUp('BooBoo')).toBe(true);
+    expect(str.isDoubled('BooBoo')).toBe(true);
   });
   test('HelloThere -> false', () => {
-    expect(str.doubleUp('HelloThere')).toBe(false);
+    expect(str.isDoubled('HelloThere')).toBe(false);
   });
   test('aa -> true', () => {
-    expect(str.doubleUp('aa!')).toBe(true);
+    expect(str.isDoubled('aa')).toBe(true);
   });
   test('Proctor -> false', () => {
-    expect(str.doubleUp('Proctor')).toBe(false);
+    expect(str.isDoubled('Proctor')).toBe(false);
   });
 });
 
