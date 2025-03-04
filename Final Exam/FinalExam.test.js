@@ -14,69 +14,93 @@ describe('helloName', () => {
     expect(fe.helloName('')).toBe('Hello !');
   });
 });
-describe('diff21', () => {
-  test('19 -> 2', () => {
-    expect(fe.diff21(19)).toBe(2);
+describe('in1020', () => {
+  test('1 -> false', () => {
+    expect(fe.in1020(1)).toBe(false);
   });
-  test('100 -> 79', () => {
-    expect(fe.diff21(100)).toBe(79);
+  test('21 -> false', () => {
+    expect(fe.in1020(21)).toBe(false);
   });
-  test('21 -> 0', () => {
-    expect(fe.diff21(21)).toBe(0);
+  test('10 -> true', () => {
+    expect(fe.in1020(10)).toBe(true);
   });
-  test('-21 -> 0', () => {
-    expect(fe.diff21(-21)).toBe(42);
+  test('20 -> true', () => {
+    expect(fe.in1020(20)).toBe(true);
   });
-});
-describe('blackjack', () => {
-  test('21, 1 -> 21', () => {
-    expect(fe.blackjack(21, 1)).toBe(21);
+  test('20 -> true', () => {
+    expect(fe.in1020(15)).toBe(true);
   });
-  test('1, 21 -> 21', () => {
-    expect(fe.blackjack(1, 21)).toBe(21);
-  });
-  test('22, 1 -> 1', () => {
-    expect(fe.blackjack(22, 1)).toBe(1);
-  });
-  test('17, 20 -> 20', () => {
-    expect(fe.blackjack(17, 20)).toBe(20);
-  });
-  test('19, 16 -> 19', () => {
-    expect(fe.blackjack(19, 16)).toBe(19);
-  });
-  test('-17, 0 -> 0', () => {
-    expect(fe.blackjack(-17, 0)).toBe(0);
+  test('20 -> true', () => {
+    expect(fe.in1020(-15)).toBe(false);
   });
 });
-describe('biggest', () => {
-  test('1,2,4 -> 4', () => {
-    expect(fe.biggest(1,2,4)).toBe(4);
+describe('eitherIn1020', () => {
+  test('21, 9 -> false', () => {
+    expect(fe.eitherIn1020(21, 9)).toBe(false);
   });
-  test('1,2,2 -> 2', () => {
-    expect(fe.biggest(1,2,2)).toBe(2);
+  test('9, 21 -> false', () => {
+    expect(fe.eitherIn1020(9, 21)).toBe(false);
   });
-  test('1,1,1 -> 1', () => {
-    expect(fe.biggest(1,1,1)).toBe(1);
+  test('19, 9 -> true', () => {
+    expect(fe.eitherIn1020(19, 9)).toBe(true);
   });
-  test('-3,-1,-2 -> 1', () => {
-    expect(fe.biggest(-3,-1,-2)).toBe(-1);
+  test('21, 11 -> true', () => {
+    expect(fe.eitherIn1020(21, 11)).toBe(true);
+  });
+  test('19, 16 -> true', () => {
+    expect(fe.eitherIn1020(19, 16)).toBe(true);
+  });
+  test('-17, 0 -> false', () => {
+    expect(fe.eitherIn1020(-17, 0)).toBe(false);
   });
 });
-describe('abcOrder', () => {
-  test('1,2,4 -> true', () => {
-    expect(fe.abcOrder(1, 2, 4)).toBe(true);
+describe('delDel', () => {
+  test('abc -> abc', () => {
+    expect(fe.delDel('abc')).toBe('abc');
   });
-  test('1,2,1 -> false', () => {
-    expect(fe.abcOrder(1, 2, 1)).toBe(false);
+  test('adelbc -> abc', () => {
+    expect(fe.delDel('adelbc')).toBe('abc');
   });
-  test('1,1,2 -> false', () => {
-    expect(fe.abcOrder(1, 1, 2)).toBe(false);
+  test('xdelaware -> xaware', () => {
+    expect(fe.delDel('xdelaware')).toBe('xaware');
   });
-  test('10,100,1000 -> true', () => {
-    expect(fe.abcOrder(10, 100, 1000)).toBe(true);
+  test('delabc -> delabc', () => {
+    expect(fe.delDel('delabc')).toBe('delabc');
   });
-  test('-1000,-100,-10 -> true', () => {
-    expect(fe.abcOrder(-1000, -100, -10)).toBe(true);
+  test('abdelc -> abdelc', () => {
+    expect(fe.delDel('delabc')).toBe('delabc');
+  });
+});
+describe('makeBricks', () => {
+  test('3 small & 1 big brick can make 8 -> true', () => {
+    expect(fe.makeBricks(3, 1, 8)).toBe(true);
+  });
+  test('3 small & 1 big brick can make 9 -> false', () => {
+    expect(fe.makeBricks(3, 1, 9)).toBe(false);
+  });
+  test('3 small & 2 big bricks can make 10 -> true', () => {
+    expect(fe.makeBricks(3, 2, 10)).toBe(true);
+  });
+  test('7 small & 1 big brick can make 13 -> false', () => {
+    expect(fe.makeBricks(7, 1, 13)).toBe(false);
+  });
+  test('2 small & 1000000 big bricks can make 1000003 -> false', () => {
+    expect(fe.makeBricks(2, 1000000, 100003)).toBe(false);
+  });
+  test('20 small & 0 big bricks can make 19 -> true', () => {
+    expect(fe.makeBricks(20, 0, 19)).toBe(true);
+  });
+  test('20 small & 0 big bricks can make 21 -> false', () => {
+    expect(fe.makeBricks(20, 0, 21)).toBe(false);
+  });
+  test('0 small & 1 big brick can make 5 -> true', () => {
+    expect(fe.makeBricks(0, 1, 5)).toBe(true);
+  });
+  test('0 small & 100 big bricks can make 5 -> true', () => {
+    expect(fe.makeBricks(0, 100, 5)).toBe(true);
+  });
+  test('0 small & 100 big bricks can make 1 -> false', () => {
+    expect(fe.makeBricks(0, 100, 1)).toBe(false);
   });
 });
 describe('dupliCat', () => {
@@ -88,5 +112,14 @@ describe('dupliCat', () => {
   });
   test('cat, *empty string* -> cat', () => {
     expect(fe.dupliCat('cat', '')).toBe('cat');
+  });
+  test('*empty string*, dog -> cat', () => {
+    expect(fe.dupliCat('', 'dog')).toBe('dog');
+  });
+  test('x, x -> *empty string*', () => {
+    expect(fe.dupliCat('x', 'x')).toBe('x');
+  });
+  test('xx, xx -> xxx', () => {
+    expect(fe.dupliCat('xx', 'xx')).toBe('xxx');
   });
 });
