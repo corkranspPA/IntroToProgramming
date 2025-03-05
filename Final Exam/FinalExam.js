@@ -1,30 +1,30 @@
-function helloName(name)
+function pa(team)
 {
 }
 
-function in1020(n)
+function near100(n)
 {
 }
 
-function eitherIn1020(n,m)
+function hasTeen(n,m,o)
 {
 }
 
-function delDel(str)
+function removeX(str)
 {
 }
 
-function makeBricks(small, big, goal)
+function canPack(small, medium, goal)
 {
 }
 
-function dupliCat(a, b)
+function withoutP()
 {
 }
 
-exports.helloName = helloName;
-exports.in1020 = in1020;
-exports.eitherIn1020 = eitherIn1020;
-exports.delDel = delDel;
-exports.dupliCat = dupliCat;
-exports.makeBricks = makeBricks;
+exports.pa = pa;
+exports.near100 = near100;
+exports.hasTeen = hasTeen;
+exports.removeX = removeX;
+exports.canPack = canPack;
+exports.withoutP = withoutP;
