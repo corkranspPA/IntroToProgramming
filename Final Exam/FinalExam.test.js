@@ -102,23 +102,23 @@ describe('removeXStart', () => {
 // Hard - 3 pts
 //
 describe('hasSixSeven', () => {
-  test('"67" -> true (exact match)', () => {
+  test('"6-7" -> true (exact match)', () => {
     expect(fe.hasSixSeven('67')).toBe(true);
   });
 
-  test('"5678" -> true (67 in the middle)', () => {
+  test('"56-78" -> true (67 in the middle)', () => {
     expect(fe.hasSixSeven('5678')).toBe(true);
   });
 
-  test('"123467" -> true (67 at the end)', () => {
+  test('"12346-7" -> true (67 at the end)', () => {
     expect(fe.hasSixSeven('123467')).toBe(true);
   });
 
-  test('"67123" -> true (67 at the start)', () => {
+  test('"6-7123" -> true (67 at the start)', () => {
     expect(fe.hasSixSeven('67123')).toBe(true);
   });
 
-  test('"1267" -> true (67 at the end of short string)', () => {
+  test('"126-7" -> true (67 at the end of short string)', () => {
     expect(fe.hasSixSeven('1267')).toBe(true);
   });
 
