@@ -1,118 +1,158 @@
 const fe = require('./FinalExam.js');
 
-describe('pa', () => {
-  test('Football -> Proctor Academy Football', () => {
-    expect(fe.pa('Football')).toBe('Proctor Academy Football');
+//
+// Easy - 1 pt
+//
+describe('greetClass', () => {
+  test('Alice -> "Welcome to class, Alice!"', () => {
+    expect(fe.greetClass('Alice')).toBe('Welcome to class, Alice!');
   });
-  test('Field Hockey -> Proctor Academy Field Hockey', () => {
-    expect(fe.pa('Field Hockey')).toBe('Proctor Academy Field Hockey');
+
+  test('Jordan -> "Welcome to class, Jordan!"', () => {
+    expect(fe.greetClass('Jordan')).toBe('Welcome to class, Jordan!');
   });
-  test('Hornets -> Proctor Academy Hornets', () => {
-    expect(fe.pa('Hornets')).toBe('Proctor Academy Hornets');
+
+  test('multi-word name -> "Welcome to class, Dr. Who!"', () => {
+    expect(fe.greetClass('Dr. Who')).toBe('Welcome to class, Dr. Who!');
   });
-  test('*empty string* -> Proctor Academy ', () => {
-    expect(fe.pa('')).toBe('Proctor Academy ');
+
+  test('empty string -> "Welcome to class, !"', () => {
+    expect(fe.greetClass('')).toBe('Welcome to class, !');
   });
 });
 
-describe('near100', () => {
-  test('95 -> true', () => {
-    expect(fe.near100(95)).toBe(true);
+describe('isPassing', () => {
+  test('59 -> false (just below passing)', () => {
+    expect(fe.isPassing(59)).toBe(false);
   });
-  test('100 -> true', () => {
-    expect(fe.near100(100)).toBe(true);
+
+  test('60 -> true (boundary passing grade)', () => {
+    expect(fe.isPassing(60)).toBe(true);
   });
-  test('111 -> false', () => {
-    expect(fe.near100(111)).toBe(false);
+
+  test('100 -> true (high passing grade)', () => {
+    expect(fe.isPassing(100)).toBe(true);
   });
-  test('90 -> true', () => {
-    expect(fe.near100(90)).toBe(true);
+
+  test('0 -> false (clearly failing)', () => {
+    expect(fe.isPassing(0)).toBe(false);
   });
-  test('110 -> true', () => {
-    expect(fe.near100(110)).toBe(true);
-  });
-  test('80 -> false', () => {
-    expect(fe.near100(80)).toBe(false);
+
+  test('-10 -> false (negative, still failing)', () => {
+    expect(fe.isPassing(-10)).toBe(false);
   });
 });
 
-describe('hasTeen', () => {
-  test('13, 25, 30 -> true', () => {
-    expect(fe.hasTeen(13, 25, 30)).toBe(true);
+//
+// Medium - 2 pts
+//
+describe('in3050', () => {
+  test('35, 40 -> true (both in 30..50)', () => {
+    expect(fe.in3050(35, 40)).toBe(true);
   });
-  test('12, 19, 21 -> true', () => {
-    expect(fe.hasTeen(12, 19, 21)).toBe(true);
+
+  test('30, 50 -> true (30..50 boundaries)', () => {
+    expect(fe.in3050(30, 50)).toBe(true);
   });
-  test('10, 22, 9 -> false', () => {
-    expect(fe.hasTeen(10, 22, 9)).toBe(false);
+
+  test('65, 70 -> true (both in 60..80)', () => {
+    expect(fe.in3050(65, 70)).toBe(true);
   });
-  test('17, 18, 19 -> true', () => {
-    expect(fe.hasTeen(17, 18, 19)).toBe(true);
+
+  test('60, 80 -> true (60..80 boundaries)', () => {
+    expect(fe.in3050(60, 80)).toBe(true);
   });
-  test('1, 2, 3 -> false', () => {
-    expect(fe.hasTeen(1, 2, 3)).toBe(false);
+
+  test('35, 75 -> false (each in different valid ranges)', () => {
+    expect(fe.in3050(35, 75)).toBe(false);
+  });
+
+  test('20, 40 -> false (one outside all ranges)', () => {
+    expect(fe.in3050(20, 40)).toBe(false);
+  });
+
+  test('55, 85 -> false (both outside both ranges)', () => {
+    expect(fe.in3050(55, 85)).toBe(false);
   });
 });
 
-describe('removeX', () => {
-  test('xapple -> apple', () => {
-    expect(fe.removeX('xapple')).toBe('apple');
+describe('removeXStart', () => {
+  test('"xapple" -> "apple" (starts with x)', () => {
+    expect(fe.removeXStart('xapple')).toBe('apple');
   });
-  test('axolotl -> aolotl', () => {
-    expect(fe.removeX('axolotl')).toBe('aolotl');
+
+  test('"x" -> "" (single x)', () => {
+    expect(fe.removeXStart('x')).toBe('');
   });
-  test('box -> box', () => {
-    expect(fe.removeX('box')).toBe('box');
+
+  test('"box" -> "box" (does not start with x)', () => {
+    expect(fe.removeXStart('box')).toBe('box');
   });
-  test('xbox -> xbox', () => {
-    expect(fe.removeX('xbox')).toBe('box');
+
+  test('"xxbox" -> "xbox" (only remove first char if x)', () => {
+    expect(fe.removeXStart('xxbox')).toBe('xbox');
+  });
+
+  test('empty string -> empty string', () => {
+    expect(fe.removeXStart('')).toBe('');
   });
 });
 
-describe('canPack', () => {
-  test('4 small & 1 medium can pack 9 -> true', () => {
-    expect(fe.canPack(4, 1, 9)).toBe(true);
+//
+// Hard - 3 pts
+//
+describe('hasSixSeven', () => {
+  test('"67" -> true (exact match)', () => {
+    expect(fe.hasSixSeven('67')).toBe(true);
   });
-  test('2 small & 3 medium cannot pack 13 -> false', () => {
-    expect(fe.canPack(2, 3, 13)).toBe(false);
+
+  test('"5678" -> true (67 in the middle)', () => {
+    expect(fe.hasSixSeven('5678')).toBe(true);
   });
-  test('3 small & 2 medium can pack 11 -> true', () => {
-    expect(fe.canPack(3, 2, 11)).toBe(true);
+
+  test('"123467" -> true (67 at the end)', () => {
+    expect(fe.hasSixSeven('123467')).toBe(true);
   });
-  test('1 small & 0 medium cannot pack 5 -> false', () => {
-    expect(fe.canPack(1, 0, 5)).toBe(false);
+
+  test('"67123" -> true (67 at the start)', () => {
+    expect(fe.hasSixSeven('67123')).toBe(true);
   });
-  test('0 small & 2 medium can pack 10 -> true', () => {
-    expect(fe.canPack(0, 2, 10)).toBe(true);
+
+  test('"1267" -> true (67 at the end of short string)', () => {
+    expect(fe.hasSixSeven('1267')).toBe(true);
   });
-  test('100 small & 0 medium can pack 99 -> true', () => {
-    expect(fe.canPack(100, 0, 99)).toBe(true);
+
+  test('"1234" -> false (no 67)', () => {
+    expect(fe.hasSixSeven('1234')).toBe(false);
   });
-  test('5 small & 1 medium can pack 6 -> true', () => {
-    expect(fe.canPack(5, 1, 6)).toBe(true);
+
+  test('"" -> false (empty string)', () => {
+    expect(fe.hasSixSeven('')).toBe(false);
   });
-  test('2 small & 1000000 medium can pack 1000003 -> false', () => {
-    expect(fe.canPack(2, 1000000, 1000000)).toBe(false);
+
+  test('"6 7" -> false (characters separated)', () => {
+    expect(fe.hasSixSeven('6 7')).toBe(false);
   });
 });
 
-describe('withoutP', () => {
-  test('"pHi" -> "Hi"', () => {
-    expect(fe.withoutP('pHi')).toBe('Hi');
+describe('repeatFront', () => {
+  test('"Chocolate", 4 -> "ChocChoChC"', () => {
+    expect(fe.repeatFront('Chocolate', 4)).toBe('ChocChoChC');
   });
-  test('"Hpi" -> "Hi"', () => {
-    expect(fe.withoutP('Hpi')).toBe('Hi');
+
+  test('"Python", 3 -> "PytPyP"', () => {
+    expect(fe.repeatFront('Python', 3)).toBe('PytPyP');
   });
-  test('"Hi" -> "Hi"', () => {
-    expect(fe.withoutP('Hi')).toBe('Hi');
+
+  test('"Hi", 1 -> "H"', () => {
+    expect(fe.repeatFront('Hi', 1)).toBe('H');
   });
-  test('"ppizza" -> "izza"', () => {
-    expect(fe.withoutP('ppizza')).toBe('izza');
+
+  test('"Abc", 2 -> "AbA"', () => {
+    expect(fe.repeatFront('Abc', 2)).toBe('AbA');
   });
-  test('"popcorn" -> "opcorn"', () => {
-    expect(fe.withoutP('popcorn')).toBe('opcorn');
-  });
-  test('"apple" -> "aple"', () => {
-    expect(fe.withoutP('apple')).toBe('aple');
+
+  test('"Code", 4 -> "CodeCodCoC"', () => {
+    expect(fe.repeatFront('Code', 4)).toBe('CodeCodCoC');
   });
 });
