@@ -23,13 +23,13 @@ describe('proctorColor', () => {
     expect(str.proctorColor('greenxx')).toBe('green');
   });
   test('xxwhite ->', () => {
-    expect(str.proctorColor('xxwhite')).toBe('');
+    expect(str.proctorColor('xxwhite')).toBe('none');
   });
   test('whiteTimes -> white', () => {
     expect(str.proctorColor('whiteTimes')).toBe('white');
   });
   test('blue ->', () => {
-    expect(str.proctorColor('blue')).toBe('');
+    expect(str.proctorColor('blue')).toBe('none');
   });
 });
 
