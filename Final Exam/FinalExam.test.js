@@ -1,158 +1,161 @@
 const fe = require('./FinalExam.js');
-
 //
 // Easy - 1 pt
 //
-describe('greetClass', () => {
-  test('Alice -> "Welcome to class, Alice!"', () => {
-    expect(fe.greetClass('Alice')).toBe('Welcome to class, Alice!');
+describe('welcomeStudent', () => {
+  test('Ava -> "Hello, Ava — welcome in!"', () => {
+    expect(fe.welcomeStudent('Ava')).toBe('Hello, Ava — welcome in!');
   });
 
-  test('Jordan -> "Welcome to class, Jordan!"', () => {
-    expect(fe.greetClass('Jordan')).toBe('Welcome to class, Jordan!');
+  test('multi-word name -> "Hello, Mr. Smith — welcome in!"', () => {
+    expect(fe.welcomeStudent('Mr. Smith')).toBe('Hello, Mr. Smith — welcome in!');
   });
 
-  test('multi-word name -> "Welcome to class, Dr. Who!"', () => {
-    expect(fe.greetClass('Dr. Who')).toBe('Welcome to class, Dr. Who!');
+  test('empty string -> "Hello,  — welcome in!"', () => {
+    expect(fe.welcomeStudent('')).toBe('Hello,  — welcome in!');
   });
 
-  test('empty string -> "Welcome to class, !"', () => {
-    expect(fe.greetClass('')).toBe('Welcome to class, !');
+  test('name with punctuation -> works', () => {
+    expect(fe.welcomeStudent('Dr. Who')).toBe('Hello, Dr. Who — welcome in!');
   });
 });
 
-describe('isPassing', () => {
-  test('59 -> false (just below passing)', () => {
-    expect(fe.isPassing(59)).toBe(false);
+describe('isEvenScore', () => {
+  test('10 -> true', () => {
+    expect(fe.isEvenScore(10)).toBe(true);
   });
 
-  test('60 -> true (boundary passing grade)', () => {
-    expect(fe.isPassing(60)).toBe(true);
+  test('7 -> false', () => {
+    expect(fe.isEvenScore(7)).toBe(false);
   });
 
-  test('100 -> true (high passing grade)', () => {
-    expect(fe.isPassing(100)).toBe(true);
+  test('0 -> true', () => {
+    expect(fe.isEvenScore(0)).toBe(true);
   });
 
-  test('0 -> false (clearly failing)', () => {
-    expect(fe.isPassing(0)).toBe(false);
+  test('-2 -> true (negative even)', () => {
+    expect(fe.isEvenScore(-2)).toBe(true);
   });
 
-  test('-10 -> false (negative, still failing)', () => {
-    expect(fe.isPassing(-10)).toBe(false);
+  test('-3 -> false (negative odd)', () => {
+    expect(fe.isEvenScore(-3)).toBe(false);
   });
 });
 
 //
 // Medium - 2 pts
 //
-describe('in3050', () => {
-  test('35, 40 -> true (both in 30..50)', () => {
-    expect(fe.in3050(35, 40)).toBe(true);
+describe('in1020or3040', () => {
+  test('12, 19 -> true (both in 10..20)', () => {
+    expect(fe.in1020or3040(12, 19)).toBe(true);
   });
 
-  test('30, 50 -> true (30..50 boundaries)', () => {
-    expect(fe.in3050(30, 50)).toBe(true);
+  test('10, 20 -> true (10..20 boundaries)', () => {
+    expect(fe.in1020or3040(10, 20)).toBe(true);
   });
 
-  test('65, 70 -> true (both in 60..80)', () => {
-    expect(fe.in3050(65, 70)).toBe(true);
+  test('30, 40 -> true (30..40 boundaries)', () => {
+    expect(fe.in1020or3040(30, 40)).toBe(true);
   });
 
-  test('60, 80 -> true (60..80 boundaries)', () => {
-    expect(fe.in3050(60, 80)).toBe(true);
+  test('33, 39 -> true (both in 30..40)', () => {
+    expect(fe.in1020or3040(33, 39)).toBe(true);
   });
 
-  test('35, 75 -> false (each in different valid ranges)', () => {
-    expect(fe.in3050(35, 75)).toBe(false);
+  test('15, 35 -> false (split across ranges)', () => {
+    expect(fe.in1020or3040(15, 35)).toBe(false);
   });
 
-  test('20, 40 -> false (one outside all ranges)', () => {
-    expect(fe.in3050(20, 40)).toBe(false);
+  test('9, 20 -> false (one below 10)', () => {
+    expect(fe.in1020or3040(9, 20)).toBe(false);
   });
 
-  test('55, 85 -> false (both outside both ranges)', () => {
-    expect(fe.in3050(55, 85)).toBe(false);
+  test('41, 39 -> false (one above 40)', () => {
+    expect(fe.in1020or3040(41, 39)).toBe(false);
   });
 });
 
-describe('removeXStart', () => {
-  test('"xapple" -> "apple" (starts with x)', () => {
-    expect(fe.removeXStart('xapple')).toBe('apple');
+describe('dropZEnd', () => {
+  test('"quiz" -> "qui" (ends with z)', () => {
+    expect(fe.dropZEnd('quiz')).toBe('qui');
   });
 
-  test('"x" -> "" (single x)', () => {
-    expect(fe.removeXStart('x')).toBe('');
+  test('"buzz" -> "buz" (remove only last z)', () => {
+    expect(fe.dropZEnd('buzz')).toBe('buz');
   });
 
-  test('"box" -> "box" (does not start with x)', () => {
-    expect(fe.removeXStart('box')).toBe('box');
+  test('"zoo" -> "zoo" (does not end with z)', () => {
+    expect(fe.dropZEnd('zoo')).toBe('zoo');
   });
 
-  test('"xxbox" -> "xbox" (only remove first char if x)', () => {
-    expect(fe.removeXStart('xxbox')).toBe('xbox');
+  test('"z" -> "" (single z)', () => {
+    expect(fe.dropZEnd('z')).toBe('');
   });
 
   test('empty string -> empty string', () => {
-    expect(fe.removeXStart('')).toBe('');
+    expect(fe.dropZEnd('')).toBe('');
+  });
+
+  test('"zz" -> "z" (remove only one z)', () => {
+    expect(fe.dropZEnd('zz')).toBe('z');
   });
 });
 
 //
 // Hard - 3 pts
 //
-describe('hasSixSeven', () => {
-  test('"6-7" -> true (exact match)', () => {
-    expect(fe.hasSixSeven('67')).toBe(true);
+describe('hasHiThere', () => {
+  test('"hi!" -> true (exact match)', () => {
+    expect(fe.hasHiThere('hi!')).toBe(true);
   });
 
-  test('"56-78" -> true (67 in the middle)', () => {
-    expect(fe.hasSixSeven('5678')).toBe(true);
+  test('"say hi! now" -> true (in the middle)', () => {
+    expect(fe.hasHiThere('say hi! now')).toBe(true);
   });
 
-  test('"12346-7" -> true (67 at the end)', () => {
-    expect(fe.hasSixSeven('123467')).toBe(true);
+  test('"hi!there" -> true (at the start)', () => {
+    expect(fe.hasHiThere('hi!there')).toBe(true);
   });
 
-  test('"6-7123" -> true (67 at the start)', () => {
-    expect(fe.hasSixSeven('67123')).toBe(true);
+  test('"well hi!" -> true (at the end)', () => {
+    expect(fe.hasHiThere('well hi!')).toBe(true);
   });
 
-  test('"126-7" -> true (67 at the end of short string)', () => {
-    expect(fe.hasSixSeven('1267')).toBe(true);
+  test('"h i!" -> false (not contiguous)', () => {
+    expect(fe.hasHiThere('h i!')).toBe(false);
   });
 
-  test('"1234" -> false (no 67)', () => {
-    expect(fe.hasSixSeven('1234')).toBe(false);
+  test('"HI!" -> false (case-sensitive)', () => {
+    expect(fe.hasHiThere('HI!')).toBe(false);
   });
 
   test('"" -> false (empty string)', () => {
-    expect(fe.hasSixSeven('')).toBe(false);
+    expect(fe.hasHiThere('')).toBe(false);
   });
 
-  test('"6 7" -> false (characters separated)', () => {
-    expect(fe.hasSixSeven('6 7')).toBe(false);
+  test('"hi" -> false (missing !)', () => {
+    expect(fe.hasHiThere('hi')).toBe(false);
   });
 });
 
-describe('repeatFront', () => {
-  test('"Chocolate", 4 -> "ChocChoChC"', () => {
-    expect(fe.repeatFront('Chocolate', 4)).toBe('ChocChoChC');
+describe('staircase', () => {
+  test('"Python", 4 -> "PPyPytPyth"', () => {
+    expect(fe.staircase('Python', 4)).toBe('PPyPytPyth');
   });
 
-  test('"Python", 3 -> "PytPyP"', () => {
-    expect(fe.repeatFront('Python', 3)).toBe('PytPyP');
+  test('"Code", 3 -> "CCoCod"', () => {
+    expect(fe.staircase('Code', 3)).toBe('CCoCod');
   });
 
   test('"Hi", 1 -> "H"', () => {
-    expect(fe.repeatFront('Hi', 1)).toBe('H');
+    expect(fe.staircase('Hi', 1)).toBe('H');
   });
 
-  test('"Abc", 2 -> "AbA"', () => {
-    expect(fe.repeatFront('Abc', 2)).toBe('AbA');
+  test('"Abcdef", 2 -> "AAb"', () => {
+    expect(fe.staircase('Abcdef', 2)).toBe('AAb');
   });
 
-  test('"Code", 4 -> "CodeCodCoC"', () => {
-    expect(fe.repeatFront('Code', 4)).toBe('CodeCodCoC');
+  test('"Zebra", 5 -> "ZZeZebZebrZebra"', () => {
+    expect(fe.staircase('Zebra', 5)).toBe('ZZeZebZebrZebra');
   });
 });

@@ -1,30 +1,29 @@
-//Rename to FinalExam.js!
+// Rename to FinalExam.js!
 
 // Easy - 1 pt
-function greetClass(name) {
+function welcomeStudent(name) {
 }
 
-function isPassing(grade) {
+function isEvenScore(score) {
 }
 
 // Medium - 2 pts
-function in3050(a, b) {
+function in1020or3040(a, b) {
 }
 
-function removeXStart(str) {
+function dropZEnd(str) {
 }
 
 // Hard - 3 pts
-function hasSixSeven(str) {
+function hasHiThere(str) {
 }
 
-function repeatFront(str, n) {
+function staircase(str, n) {
 }
 
-// Export statements for Jest tests
-exports.greetClass = greetClass;
-exports.isPassing = isPassing;
-exports.in3050 = in3050;
-exports.removeXStart = removeXStart;
-exports.hasSixSeven = hasSixSeven;
-exports.repeatFront = repeatFront;
+exports.welcomeStudent = welcomeStudent;
+exports.isEvenScore = isEvenScore;
+exports.in1020or3040 = in1020or3040;
+exports.dropZEnd = dropZEnd;
+exports.hasHiThere = hasHiThere;
+exports.staircase = staircase;
