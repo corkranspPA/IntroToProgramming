@@ -1,4 +1,5 @@
 const fe = require('./FinalExam.js');
+
 //
 // Easy - 1 pt
 //
@@ -39,6 +40,38 @@ describe('isEvenScore', () => {
 
   test('-3 -> false (negative odd)', () => {
     expect(fe.isEvenScore(-3)).toBe(false);
+  });
+});
+
+describe('addOne', () => {
+  test('4 -> 5', () => {
+    expect(fe.addOne(4)).toBe(5);
+  });
+
+  test('-1 -> 0', () => {
+    expect(fe.addOne(-1)).toBe(0);
+  });
+
+  test('0 -> 1', () => {
+    expect(fe.addOne(0)).toBe(1);
+  });
+});
+
+describe('makeEmail', () => {
+  test('"spencer" -> "spencer@proctoracademy.org"', () => {
+    expect(fe.makeEmail('spencer')).toBe('spencer@proctoracademy.org');
+  });
+
+  test('"alice" -> "alice@proctoracademy.org"', () => {
+    expect(fe.makeEmail('alice')).toBe('alice@proctoracademy.org');
+  });
+
+  test('empty string -> "@proctoracademy.org"', () => {
+    expect(fe.makeEmail('')).toBe('@proctoracademy.org');
+  });
+
+  test('name with dot -> "dr.who@proctoracademy.org"', () => {
+    expect(fe.makeEmail('dr.who')).toBe('dr.who@proctoracademy.org');
   });
 });
 
@@ -101,8 +134,52 @@ describe('dropZEnd', () => {
   });
 });
 
+describe('withoutFirstAndLast', () => {
+  test('"Hello" -> "ell"', () => {
+    expect(fe.withoutFirstAndLast('Hello')).toBe('ell');
+  });
+
+  test('"ab" -> ""', () => {
+    expect(fe.withoutFirstAndLast('ab')).toBe('');
+  });
+
+  test('"a" -> ""', () => {
+    expect(fe.withoutFirstAndLast('a')).toBe('');
+  });
+
+  test('"" -> ""', () => {
+    expect(fe.withoutFirstAndLast('')).toBe('');
+  });
+
+  test('"JavaScript" -> "avaScrip"', () => {
+    expect(fe.withoutFirstAndLast('JavaScript')).toBe('avaScrip');
+  });
+});
+
+describe('sumOrDouble', () => {
+  test('1, 2 -> 3', () => {
+    expect(fe.sumOrDouble(1, 2)).toBe(3);
+  });
+
+  test('5, 5 -> 20', () => {
+    expect(fe.sumOrDouble(5, 5)).toBe(20);
+  });
+
+  test('0, 0 -> 0', () => {
+    expect(fe.sumOrDouble(0, 0)).toBe(0);
+  });
+
+  test('-3, -3 -> -12', () => {
+    expect(fe.sumOrDouble(-3, -3)).toBe(-12);
+  });
+
+  test('-3, 3 -> 0', () => {
+    expect(fe.sumOrDouble(-3, 3)).toBe(0);
+  });
+});
+
 //
-// Hard - 3 pts
+// Hard - 3 pts (loop required)
 //
 describe('hasHiThere', () => {
   test('"hi!" -> true (exact match)', () => {
@@ -157,5 +234,53 @@ describe('staircase', () => {
 
   test('"Zebra", 5 -> "ZZeZebZebrZebra"', () => {
     expect(fe.staircase('Zebra', 5)).toBe('ZZeZebZebrZebra');
+  });
+});
+
+describe('hasPair', () => {
+  test('"book" -> true (oo)', () => {
+    expect(fe.hasPair('book')).toBe(true);
+  });
+
+  test('"abc" -> false', () => {
+    expect(fe.hasPair('abc')).toBe(false);
+  });
+
+  test('"aabb" -> true (aa)', () => {
+    expect(fe.hasPair('aabb')).toBe(true);
+  });
+
+  test('"a" -> false (too short)', () => {
+    expect(fe.hasPair('a')).toBe(false);
+  });
+
+  test('"" -> false (empty)', () => {
+    expect(fe.hasPair('')).toBe(false);
+  });
+
+  test('"Mississippi" -> true (ss)', () => {
+    expect(fe.hasPair('Mississippi')).toBe(true);
+  });
+});
+
+describe('countEvens', () => {
+  test('[1,2,3,4] -> 2', () => {
+    expect(fe.countEvens([1, 2, 3, 4])).toBe(2);
+  });
+
+  test('[] -> 0', () => {
+    expect(fe.countEvens([])).toBe(0);
+  });
+
+  test('[0, -2, 5] -> 2', () => {
+    expect(fe.countEvens([0, -2, 5])).toBe(2);
+  });
+
+  test('[7, 9, 11] -> 0', () => {
+    expect(fe.countEvens([7, 9, 11])).toBe(0);
+  });
+
+  test('[2, 2, 2, 2] -> 4', () => {
+    expect(fe.countEvens([2, 2, 2, 2])).toBe(4);
   });
 });
